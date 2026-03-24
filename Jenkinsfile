@@ -1,29 +1,28 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        jdk 'JDK'
+        gradle 'gradle'
+    }
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Shivansh1205/gradle'
-            }
-        }
+    stages {
 
         stage('Build') {
             steps {
-                sh './gradlew clean build'
+                sh 'gradle build'
             }
         }
 
         stage('Test') {
             steps {
-                sh './gradlew test'
+                sh 'gradle test'
             }
         }
 
         stage('Package') {
             steps {
-                sh './gradlew assemble'
+                sh 'gradle assemble'
             }
         }
     }
